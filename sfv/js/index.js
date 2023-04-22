@@ -70,7 +70,6 @@ function createFolder() {
         folder_name: folder_name,
         directory: true
     }
-    console.log(data)
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:3000/user/create-folder',
@@ -97,6 +96,7 @@ function getFiles(path) {
         group_id: localStorage.getItem('_id'),
         location: path
     }
+    console.log(path)
     $.ajax({
         type: 'POST',
         url: 'http://127.0.0.1:3000/user/get-files',
@@ -108,10 +108,6 @@ function getFiles(path) {
         dataType: "json",
         success: function (data) {
             current_directory = data
-            if (!current_directory.directory) {
-                location.href = "showfile.html"
-                return
-            }
             dir_folders = data.children
             console.log(dir_folders)
             displayFolders()
@@ -123,12 +119,14 @@ function getFiles(path) {
     })
 }
 
-function openFile(url) {
-    console.log(url)
-}
-
 function displayFolders() {
     $('#folders').empty()
+    if (!current_directory.directory) {
+        $('#folders').append(`
+            <div class="btn">Download</div>
+        `)
+        return
+    }
     for (const folder of dir_folders) {
         $('#folders').append(`
             <div class="card-panel folder" onclick="selectFolder('${folder.name}')">

@@ -54,7 +54,6 @@ io.on('connection', (socket) => {
 import S3 from "aws-sdk/clients/s3.js"
 import busboy from "busboy"
 import { v4 as uuidv4 } from "uuid"
-import axios from "axios"
 
 app.post('/upload', async (req, res) => {
     try {
