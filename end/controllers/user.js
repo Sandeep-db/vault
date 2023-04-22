@@ -16,7 +16,6 @@ export default function UserController() {
                 const new_user = new user({ email, name, passwd })
                 const result = await new_user.save()
                 const root_dir = new file({
-                    user_id: result._id,
                     group_id: result._id,
                     name: 'Home',
                     directory: true,
@@ -24,7 +23,6 @@ export default function UserController() {
                 })
                 const root = await root_dir.save()
                 await file.updateOne({
-                    user_id: result._id,
                     group_id: result._id,
                 }, { parent: root._id })
                 return { result, status: 200 }
@@ -32,26 +30,30 @@ export default function UserController() {
                 return { result: e, status: 400 }
             }
         },
-        getfiles: async function ({ user_id, group_id, location }) {
+        getfiles: async function ({ group_id, location }) {
             try {
-                const result = await file.findOne({ user_id, group_id, location })
+                const result = await file.findOne({ group_id, location })
                 return { result, status: 200 }
             } catch (e) {
                 return { result: e, status: 400 }
             }
         },
-        createFolder: async function ({ user_id, group_id, location, parent, folder_name, directory, link }) {
+        createFolder: async function ({ group_id, location, parent, folder_name, directory, link }) {
             try {
                 const new_folder = new file({
-                    user_id, group_id, folder_name,
-                    parent, name: folder_name, directory: directory,
+                    group_id, folder_name, parent, 
+                    name: folder_name, directory: directory,
                     location: location + folder_name + (link ? '' : '/'),
                     link: link
                 })
                 let result = await new_folder.save()
-                await file.updateOne({ user_id, group_id, _id: parent }, {
+                await file.updateOne({ group_id, _id: parent }, {
                     $push: {
-                        children: { name: result.name, _id: result._id }
+                        children: {
+                            _id: result._id,
+                            name: result.name,
+                            folder: (link ? false : true)
+                        }
                     }
                 })
                 return { result, status: 200 }

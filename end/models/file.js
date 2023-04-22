@@ -1,10 +1,6 @@
 import mongoose, { Schema } from "mongoose"
 
 const fileSchema = new Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-    },
     group_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -35,6 +31,14 @@ const fileSchema = new Schema({
                 type: Schema.Types.ObjectId,
                 required: true,
             },
+            trash: {
+                type: Boolean,
+                default: false,
+            },
+            folder: {
+                type: Boolean,
+                default: true,
+            }
         }],
         default: [],
     },
@@ -44,8 +48,7 @@ const fileSchema = new Schema({
     },
 })
 
-fileSchema.index({ user_id: 1, group_id: 1, location: 1 }, { unique: true })
-fileSchema.index({ group_id: 1, user_id: 1, location: 1 }, { unique: true })
-fileSchema.index({ name: 1 })
+fileSchema.index({ group_id: 1, location: 1 }, { unique: true })
+fileSchema.index({ group_id: 1, name: 1 })
 
 export default mongoose.model("file", fileSchema)

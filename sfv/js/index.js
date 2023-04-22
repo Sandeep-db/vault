@@ -63,7 +63,6 @@ function getPath() {
 function createFolder() {
     let folder_name = $('#folder-name').find('input').val()
     const data = {
-        user_id: localStorage.getItem('_id'),
         group_id: localStorage.getItem('_id'),
         parent: current_directory._id,
         location: current_directory.location,
@@ -92,7 +91,6 @@ function createFolder() {
 
 function getFiles(path) {
     const data = {
-        user_id: localStorage.getItem('_id'),
         group_id: localStorage.getItem('_id'),
         location: path
     }
@@ -160,7 +158,6 @@ function selectFolder(name) {
 function uploadFile(file) {
     const formData = new FormData();
     let data = {
-        user_id: localStorage.getItem('_id'),
         group_id: localStorage.getItem('_id'),
         parent: current_directory._id,
         location: current_directory.location

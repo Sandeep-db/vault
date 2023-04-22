@@ -6,8 +6,14 @@ const groupSchema = new Schema({
         required: true,
     },
     members: [{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        _id: {
+            type: Schema.Types.ObjectId,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
     }],
 })
 
