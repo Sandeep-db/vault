@@ -45,7 +45,7 @@ export default function UserController() {
                 const new_folder = new file({
                     user_id, group_id, folder_name,
                     parent, name: folder_name, directory: directory,
-                    location: location + folder_name + '/',
+                    location: location + folder_name + (link ? '' : '/'),
                     link: link
                 })
                 let result = await new_folder.save()

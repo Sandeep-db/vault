@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import user from "./routes/user.js"
+import UserController from "./controllers/user.js"
 
 dotenv.config()
 const app = express()
@@ -67,7 +68,7 @@ app.post('/upload', async (req, res) => {
             const params = JSON.parse(decodeURI(fieldname))
             console.log(params)
             let current = 0, total = req.headers['content-length']
-            file.on('data', function(chunk) {
+            file.on('data', function (chunk) {
                 current += chunk.length
                 let x = ((current / total) * 100).toFixed(2)
                 console.log('transfer Progress : ' + x + '%')
@@ -95,10 +96,13 @@ app.post('/upload', async (req, res) => {
             __file.send(async function (err, data) {
                 console.log(data, err)
                 console.log(filename)
-                // axios.post('/user/create-folder', {
-                //     ...params,
-                //     folder_name: filename
-                // })
+                const userCtrl = UserController()
+                await userCtrl.createFolder({
+                    ...params,
+                    folder_name: filename.filename,
+                    link: data.Location,
+                    directory: false
+                })
                 io.sockets.to(params.group_id).emit('finish', {
                     status: data
                 })
