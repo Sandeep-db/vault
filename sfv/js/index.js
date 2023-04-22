@@ -106,6 +106,10 @@ function getFiles(path) {
         dataType: "json",
         success: function (data) {
             current_directory = data
+            console.log(data)
+            if (!current_directory.directory) {
+                displayFolders()
+            }
             dir_folders = data.children
             console.log(dir_folders)
             displayFolders()
@@ -119,16 +123,17 @@ function getFiles(path) {
 
 function displayFolders() {
     $('#folders').empty()
+    console.log(current_directory)
     if (!current_directory.directory) {
         $('#folders').append(`
-            <div class="btn">Download</div>
+            <a class="btn" href="${current_directory.link}" download="${current_directory.name}">Open</a>
         `)
         return
     }
     for (const folder of dir_folders) {
         $('#folders').append(`
             <div class="card-panel folder" onclick="selectFolder('${folder.name}')">
-            <i class="material-icons left">folder</i><span>${folder.name}</span>
+            <i class="material-icons left">${folder.folder ? 'folder' : 'insert_drive_file'}</i><span>${folder.name}</span>
             </div>
         `)
     }

@@ -7,6 +7,7 @@ function listenFileStatus() {
     })
     socket.on('transferComplete', () => {
         console.log('transfer complete')
+        location.href = 'status.html'
     })
     socket.on('upload', obj => {
         console.log('upload: ', obj)
