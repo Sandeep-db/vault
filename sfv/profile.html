@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- Compiled and minified CSS -->
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Secure Vault</title>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav class="nav-extended white">
+            <div class="nav-wrapper white">
+                <ul>
+                    <li>
+                        <a href="index.html" class="title grey-text text-darken-1">
+                            Secure Vault</a>
+                    </li>
+                </ul>
+                <div class="search-wrapper">
+                    <i class="material-icons">search</i>
+                    <input type="search" name="Search" placeholder="Search Vault" />
+                </div>
+                <ul class="right">
+                    <li>
+                        <a class="profile-nav"><img src="img/profile_picture.jpeg" alt="profile picture" class="circle" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-wrapper nav-2">
+                <ul>
+                    <li>
+                        <a class="waves-effect waves-light btn btn-flat white-text new-file-folder">Add Folder</a>
+                        <a class="waves-effect waves-light btn btn-flat white-text new-file-folder">Upload Files</a>
+                    </li>
+                </ul>
+                <ul class="right">
+                    <li>
+                        <a href="#!"><i class="material-icons grey-text text-darken-1">view_list</i></a>
+                    </li>
+                    <li>
+                        <a href="#!"><i class="material-icons grey-text text-darken-1">access_time</i></a>
+                    </li>
+                    <li>
+                        <a href="#!"><i class="material-icons grey-text text-darken-1">settings</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <ul class="side-nav fixed floating transparent z-depth-0">
+        <li>
+            <a class="home-nav"><i class="material-icons">storage</i>My
+                Space</a>
+        </li>
+        <li>
+            <a class="group-nav"><i class="material-icons">people</i>Groups</a>
+        </li>
+        <li>
+            <a class="status-nav"><i class="material-icons">donut_large</i>View Status</a>
+        </li>
+        <li class="active">
+            <a class="profile-nav"><i class="material-icons blue-text text-darken-1">account_circle</i>Profile</a>
+        </li>
+        <li>
+            <a class="trash-nav"><i class="material-icons">delete</i>Trash</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a class="add-folder"><i class="material-icons">create_new_folder</i>Add Folder</a>
+        </li>
+        <li>
+            <a class="add-files"><i class="material-icons">add_to_photos</i>Add Files</a>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <a class="logout"><i class="material-icons">input</i>Logout</a>
+        </li>
+    </ul>
+    <div class="main">
+        <div class="container-fluid">
+            <p class="subheader">Folders</p>
+            <div class="card-panel folder">
+                <i class="material-icons left">folder</i>Folder
+            </div>
+            <div class="card-panel folder">
+                <i class="material-icons left">folder</i>Folder
+            </div>
+            <div class="card-panel folder">
+                <i class="material-icons left">folder</i>Folder
+            </div>
+            <div class="card-panel folder">
+                <i class="material-icons left">folder</i>Folder
+            </div>
+            <div class="card-panel folder">
+                <i class="material-icons left">folder</i>Folder
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/sidenav.js"></script>
+<script src="js/index.js"></script>
+
+</html>

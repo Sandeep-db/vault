@@ -1,0 +1,20 @@
+
+.box {
+    display: flex;
+    justify-content: center;
+}
+
+.login-box {
+    margin-top: 100px;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+label {
+    font-size: 24px;
+}
+
+button {
+    width: 150px !important;
+    height: 50px !important; 
+}
