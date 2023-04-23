@@ -84,6 +84,22 @@ export default function UserController() {
             } catch (e) {
                 return { result: e, status: 400 }
             }
+        },
+
+        delete: async function ({_id}){
+            try {
+                const doc = await file.findOne({_id});
+                const parent = doc.parent;
+            
+                const updatedDoc = await file.findOneAndUpdate(
+                  { _id: parent, "children._id": _id },
+                  { $set: { "children.$.trash": true } },
+                  { new: true }
+                );
+                return { result: updatedDoc, status: 200 };
+              } catch(e) {
+                return { result: e, status: 400 };
+              }
         }
     }
 }
