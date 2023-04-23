@@ -23,12 +23,8 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 	<link rel="stylesheet" href="css/style.css" />
 
-	<!-- <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-	<link rel="stylesheet" href="//blueimp.github.io/File-Upload/css/jquery.fileupload.min.css">
-	<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-	<script src="//blueimp.github.io/File-Upload/js/jquery.fileupload.min.js"></script> -->
 	<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-	
+
 
 	<title>Secure Vault</title>
 </head>
@@ -114,7 +110,7 @@
 		</li>
 	</ul>
 	<div class="main">
-		<div class="container-fluid">
+		<div class="container-fluid box">
 			<p class="subheader path-header">
 				<span class="dir"><i class="material-icons">keyboard_arrow_right</i><a class="path-nav">Home</a></span>
 			</p>
@@ -138,13 +134,23 @@
 					<div class="file-field input-field">
 						<div class="btn">
 							<span>File</span>
-							<input id="upload-file" type="file" multiple>
+							<input id="upload-file" type="file">
 						</div>
 						<div class="file-path-wrapper">
 							<input class="file-path validate" type="text" placeholder="Upload one or more files">
 						</div>
+						<div class="progress-transfer" hidden>
+							<h6>Transfered <span class="transfer-value">0</span>%</h6>
+							<div class="progress">
+								<div class="determinate" id="tranfer-bar" style="width: 0%"></div>
+							</div>
+							<h6>Uploaded <span class="upload-value">0</span>%</h6>
+							<div class="progress">
+								<div class="determinate" id="upload-bar" style="width: 0%"></div>
+							</div>
+						</div>
 					</div>
-					<button type="submit" class="btn white-text">Upload</button>
+					<button class="btn upload-file-button" type="submit" class="btn white-text">Upload</button>
 				</form>
 			</div>
 		</div>

@@ -1,0 +1,16 @@
+li {
+  list-style: none;
+}
+
+.group-bar {
+  height: 100vh;
+  position: fixed;
+  top: 150px !important;
+  right: 0px !important;
+  width: 280px !important;
+}
+
+.groupheader {
+  display: inline-flex;
+  vertical-align: bottom;
+}

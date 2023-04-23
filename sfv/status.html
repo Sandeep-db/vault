@@ -17,6 +17,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
@@ -41,7 +42,8 @@
                 </div>
                 <ul class="right">
                     <li>
-                        <a class="profile-nav"><img src="img/profile_picture.jpeg" alt="profile picture" class="circle" /></a>
+                        <a class="profile-nav"><img src="img/profile_picture.jpeg" alt="profile picture"
+                                class="circle" /></a>
                     </li>
                 </ul>
             </div>
@@ -101,28 +103,13 @@
     </ul>
     <div class="main">
         <div class="container-fluid">
-            <p class="subheader">Folders</p>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
+            <p class="subheader">Status</p>
         </div>
     </div>
 </body>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/sidenav.js"></script>
-<script src="js/index.js"></script>
+<script src="js/socket.listen.js"></script>
 
 </html>

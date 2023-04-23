@@ -3,6 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
 import user from "./routes/user.js"
+import group from "./routes/group.js"
 import UserController from "./controllers/user.js"
 
 dotenv.config()
@@ -19,6 +20,7 @@ app.get('/', async (req, res) => {
 })
 
 app.use('/user', user)
+app.use('/group', group)
 
 // -------- socket --------
 
@@ -54,8 +56,12 @@ io.on('connection', (socket) => {
 import S3 from "aws-sdk/clients/s3.js"
 import busboy from "busboy"
 import { v4 as uuidv4 } from "uuid"
+import verify from "./utilities/validate.js"
 
 app.post('/upload', async (req, res) => {
+    if (!verify(req.headers)) {
+        return res.status(400).json({ message: "not authorized" })
+    }
     try {
         const bb = busboy({ headers: req.headers })
         const s3 = new S3({
@@ -86,9 +92,10 @@ app.post('/upload', async (req, res) => {
                 ContentType: filename.mimeType
             })
             __file.on('httpUploadProgress', function (progress) {
-                let x = (progress.loaded / progress.total * 100).toFixed(2)
+                let x = (progress.loaded / total * 100).toFixed(2)
                 console.log('Upload Progress : ' + x + '%')
                 io.sockets.to(params.group_id).emit('upload', {
+                    filename: params.fieldname,
                     progress: x
                 })
             })

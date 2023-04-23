@@ -41,9 +41,9 @@ export default function UserController() {
         createFolder: async function ({ group_id, location, parent, folder_name, directory, link }) {
             try {
                 const new_folder = new file({
-                    group_id, folder_name, parent, 
+                    group_id, folder_name, parent,
                     name: folder_name, directory: directory,
-                    location: location + folder_name + (link ? '' : '/'),
+                    location: location + folder_name + '/',
                     link: link
                 })
                 let result = await new_folder.save()
@@ -77,8 +77,16 @@ export default function UserController() {
             }
             console.log(updateFields)
             let result = await user.findOneAndUpdate({ _id }, updateFields, { new: true })
-            return { result, status: 200 }
+            return { result, status: 200 }},
                 
+        getUserGroups: async function ({ user_id }) {
+            try {
+                const user_groups = await user.findOne({ _id: user_id }, { groups: 1 })
+                const result = user_groups.groups
+                return { result, status: 200 }
+            } catch (e) {
+                return { result: e, status: 400 }
+            }
         }
     }
 }
