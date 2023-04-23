@@ -73,5 +73,20 @@ app.route('/create-folder')
         return res.status(status).json(result)
     })
 
+app.route('/updateprofile')
+    .post(async (req, res) => {
+        if (!verify(req.headers)) {
+            return res.status(400).json({ message: "not authorized" })
+        }
+        try{
+
+            const { status, result } = await userCtrl.updateProfile(req.body)
+            console.log("status",status,"result", result)
+            return res.status(status).json(result)
+        }catch(e){
+            return res.status(400).json({ message: e.message })
+        }
+    })
+
 const user = app
 export default user

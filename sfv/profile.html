@@ -17,6 +17,7 @@
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="/sfv/js/profile.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
@@ -100,23 +101,43 @@
         </li>
     </ul>
     <div class="main">
-        <div class="container-fluid">
-            <p class="subheader">Folders</p>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
-            <div class="card-panel folder">
-                <i class="material-icons left">folder</i>Folder
-            </div>
+        <div class="container" style="padding-top: 30px;">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row card-panel " >
+                        <div class="row s6">
+                            <img class="responsive-img" style="height: 200px; width:200px ; margin-left: 300px;"  src="img/profile_picture.jpeg" alt="" class="circle responsive-img">
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                              <i class="material-icons blue-text prefix">account_circle</i>
+                              <input  id="name" type="text" class="input">
+                              <label id="namelabel" for="name"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                              <i class="material-icons prefix blue-text">email</i>
+                              <input  id="email" type="tel" class="input">
+                              <label id="emaillabel" for="email">Telephone</label>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s3">
+                                  <i class="material-icons prefix blue-text">key</i>
+                                  <input  id="icon_prefix" type="text" class="input">
+                                  <label for="icon_prefix">Password</label>
+                                </div>
+                          </div>
+                          
+                    </div>
+                  
+                </form>
+                <div class="col s2">
+
+                    <button id="submitBtn" onclick="updateProfile()"  class="waves-effect waves-light btn ">Update</button>
+                </div>
+                
+              </div>
         </div>
     </div>
 </body>
@@ -124,5 +145,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/sidenav.js"></script>
 <script src="js/index.js"></script>
+
 
 </html>

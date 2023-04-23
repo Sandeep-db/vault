@@ -60,6 +60,25 @@ export default function UserController() {
             } catch (e) {
                 return { result: e, status: 400 }
             }
+        },
+        updateProfile: async function ({ _id,name,email, passwd }) {
+            const updateFields = {}
+
+            if (email) {
+                updateFields.email = email
+            }
+
+            if (name) {
+                updateFields.name = name
+            }
+
+            if (passwd) {
+                updateFields.passwd = passwd
+            }
+            console.log(updateFields)
+            let result = await user.findOneAndUpdate({ _id }, updateFields, { new: true })
+            return { result, status: 200 }
+                
         }
     }
 }
