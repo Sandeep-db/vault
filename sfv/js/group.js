@@ -265,7 +265,7 @@ function getGroups() {
 function displayGroups(data) {
     $('#groups').empty()
     let gid = localStorage.getItem('group_id')
-    if (!gid) {
+    if (!gid || gid == localStorage.getItem('_id')) {
         localStorage.setItem('group_id', data[0].group_id)
         localStorage.setItem('group_name', data[0].name)
     }
