@@ -126,14 +126,14 @@ function displayFolders() {
     console.log(current_directory)
     if (!current_directory.directory) {
         $('#folders').append(`
-            <a class="btn" href="${current_directory.link}" download="${current_directory.name}">Open</a>
+            <a class="btn" onclick="downloadFile('${current_directory.link}', '${current_directory.name}')">Open</a>
         `)
         return
     }
     for (const folder of dir_folders) {
         $('#folders').append(`
             <div class="card-panel folder" onclick="selectFolder('${folder.name}')">
-            <i class="material-icons left">${folder.folder ? 'folder' : 'insert_drive_file'}</i><span>${folder.name}</span>
+                <i class="material-icons left">${folder.folder ? 'folder' : 'insert_drive_file'}</i><span>${folder.name}</span>
             </div>
         `)
     }
@@ -170,6 +170,9 @@ function uploadFile(file) {
     formData.append(JSON.stringify(data), file)
     $.ajax({
         url: 'http://127.0.0.1:3000/upload',
+        headers: {
+            token: localStorage.getItem('token')
+        },
         method: 'POST',
         data: formData,
         processData: false,
@@ -183,7 +186,31 @@ function uploadFile(file) {
     })
 }
 
+function downloadFile(link, name) {
+    console.log(link)
+    $.ajax({
+        url: link,
+        xhrFields: {
+            responseType: 'arraybuffer'
+        },
+        success: (data) => {
+            downloadIt(data)
+        }
+    })
+    function downloadIt(data) {
+        const blob = new Blob([data], { type: 'application/octet-stream' })
+        const url = window.URL.createObjectURL(blob)
+        const a = $('<a>').attr('href', url)
+        a.attr('download', name)
+        $('body').append(a)
+        a[0].click()
+        window.URL.revokeObjectURL(url)
+    }
+}
+
 $(document).ready(function () {
+    let group_id = localStorage.getItem('_id')
+    localStorage.setItem('group_id', group_id)
     getPath()
     $('.folder').on('click', selectFolder)
     $('.modal').modal()

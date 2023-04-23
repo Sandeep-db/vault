@@ -73,5 +73,14 @@ app.route('/create-folder')
         return res.status(status).json(result)
     })
 
+app.route('/get-groups')
+    .post(async (req, res) => {
+        if (!verify(req.headers)) {
+            return res.status(400).json({ message: "not authorized" })
+        }
+        const { status, result } = await userCtrl.getUserGroups(req.body)
+        return res.status(status).json(result)
+    })
+
 const user = app
 export default user

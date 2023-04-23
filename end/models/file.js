@@ -49,6 +49,7 @@ const fileSchema = new Schema({
 })
 
 fileSchema.index({ group_id: 1, location: 1 }, { unique: true })
+fileSchema.index({ group_id: 1, parent: 1, name: 1 }, { unique: true })
 fileSchema.index({ group_id: 1, name: 1 })
 
 export default mongoose.model("file", fileSchema)
