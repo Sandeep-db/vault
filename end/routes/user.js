@@ -75,7 +75,7 @@ app.route("/get-groups").post(async (req, res) => {
   return res.status(status).json(result);
 });
 
-app.route("/updateprofile");
+app.route("/updateprofile").post(async (req, res) => {
 if (!verify(req.headers)) {
   return res.status(400).json({ message: "not authorized" });
 }
@@ -85,7 +85,16 @@ try {
   return res.status(status).json(result);
 } catch (e) {
   return res.status(400).json({ message: e.message });
-}
+}});
+
+app.route("/delete").post(async (req, res) => {
+    if (!verify(req.headers)) {
+        return res.status(400).json({ message: "not authorized" });
+    }
+    const { status, result } = await userCtrl.delete(req.body);
+    console.log("status", status, "result", result);
+    return res.status(status).json(result);
+})
 
 const user = app;
 export default user;

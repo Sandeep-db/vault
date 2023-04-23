@@ -5,7 +5,7 @@ let dir_ids = []
 let dir_folders = []
 let current_directory = {}
 
-function setpath(path) {
+function setpath(path) {``
     const data = {
         email: localStorage.getItem("email"),
         path: path
