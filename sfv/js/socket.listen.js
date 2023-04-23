@@ -11,7 +11,7 @@ function listenFileStatus() {
     })
     socket.on('transferComplete', () => {
         console.log('transfer complete')
-        location.href = 'status.html'
+        // location.href = 'status.html'
     })
     socket.on('upload', obj => {
         $('.upload-value').text(obj.progress)
@@ -20,6 +20,7 @@ function listenFileStatus() {
     })
     socket.on('finish', obj => {
         console.log('finish: ', obj)
+        location.reload()
     })
 }
 
