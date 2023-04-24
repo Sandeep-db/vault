@@ -3,9 +3,11 @@ import UserController from "../controllers/user.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import verify from "../utilities/validate.js";
+import SearchController from "../controllers/search.js";
 
 const app = express.Router();
 const userCtrl = UserController();
+const searchCtrl = SearchController();
 dotenv.config();
 
 let cache = new Map();
@@ -93,7 +95,14 @@ app.route("/delete").post(async (req, res) => {
         return res.status(400).json({ message: "not authorized" });
     }
     const { status, result } = await userCtrl.delete(req.body);
-    console.log("status", status, "result", result);
+    return res.status(status).json(result);
+})
+
+app.route("/search").post(async (req, res) => {
+    if (!verify(req.headers)) {
+        return res.status(400).json({ message: "not authorized" });
+    }
+    const { status, result } = await searchCtrl.searchFiles(req.body);
     return res.status(status).json(result);
 })
 

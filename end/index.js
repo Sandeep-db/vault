@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import mongoose from "mongoose"
 import user from "./routes/user.js"
 import group from "./routes/group.js"
+import trash from "./routes/trash.js"
 import UserController from "./controllers/user.js"
 
 dotenv.config()
@@ -21,6 +22,7 @@ app.get('/', async (req, res) => {
 
 app.use('/user', user)
 app.use('/group', group)
+app.use('/trash', trash)
 
 // -------- socket --------
 

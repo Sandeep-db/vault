@@ -1,11 +1,13 @@
 
 let path = '/'
+let delete_folder = ''
 let dirs = []
 let dir_ids = []
 let dir_folders = []
 let current_directory = {}
 
-function setpath(path) {``
+function setpath(path) {
+    ``
     const data = {
         email: localStorage.getItem("email"),
         path: path
@@ -131,8 +133,11 @@ function displayFolders() {
         return
     }
     for (const folder of dir_folders) {
+        if (folder.trash) {
+            continue
+        }
         $('#folders').append(`
-            <div class="card-panel folder" onclick="selectFolder('${folder.name}')">
+            <div class="card-panel folder" onclick="selectFolder('${folder.name}')" oncontextmenu="setDeleteFolder(event, '${folder._id}')">
                 <i class="material-icons left">${folder.folder ? 'folder' : 'insert_drive_file'}</i><span>${folder.name}</span>
             </div>
         `)
@@ -206,6 +211,46 @@ function downloadFile(link, name) {
         a[0].click()
         window.URL.revokeObjectURL(url)
     }
+}
+
+function deleteFolder() {
+    const data = {
+        _id: delete_folder,
+    }
+    console.log(data)
+    $.ajax({
+        type: 'POST',
+        url: 'http://127.0.0.1:3000/user/delete',
+        headers: {
+            token: localStorage.getItem("token"),
+        },
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        dataType: "json",
+        success: function (data) {
+            current_directory = data
+            console.log(data)
+            if (!current_directory.directory) {
+                displayFolders()
+            }
+            delete_folder = ''
+            dir_folders = data.children
+            console.log(dir_folders)
+            displayFolders()
+            $('#delete-name').modal('close')
+        },
+        error: function (error) {
+            alert('something went wrong')
+            console.log(error)
+        }
+    })
+}
+
+function setDeleteFolder(event, _id) {
+    event.preventDefault()
+    delete_folder = _id
+    console.log(delete_folder)
+    $('#delete-name').modal('open')
 }
 
 $(document).ready(function () {

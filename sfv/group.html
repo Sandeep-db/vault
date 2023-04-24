@@ -116,7 +116,7 @@
                 <p class="subheader path-header">
                     <span class="dir"><i class="material-icons">keyboard_arrow_right</i><a id="-group-name">Group Home</a></span>
                 </p>
-                <div id="folders">
+                <div id="folders" class="col s10">
                 </div>
             </div>
             <div class="container-fluid box col s3 group-bar transparent z-depth-0">
@@ -137,6 +137,13 @@
                 <button class="btn white-text" onclick="createGroup()">Create Group</button>
             </div>
         </div>
+
+        <!-- Modal Structure delete -->
+		<div id="delete-name" class="modal">
+			<div class="modal-content">
+				<button class="btn white-text" onclick="deleteFolder()">Delete</button>
+			</div>
+		</div>
 
         <!-- Modal Structure folder -->
         <div id="folder-name" class="modal">
