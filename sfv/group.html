@@ -26,6 +26,7 @@
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
     <title>Secure Vault</title>
 </head>
@@ -142,6 +143,16 @@
 		<div id="delete-name" class="modal">
 			<div class="modal-content">
 				<button class="btn white-text" onclick="deleteFolder()">Delete</button>
+			</div>
+		</div>
+
+        <!-- Modal Structure download -->
+		<div id="download-name" class="modal">
+			<div class="modal-content">
+				<h6>Downloaded <span class="download-value">0</span>%</h6>
+				<div class="progress">
+					<div class="determinate" id="download-bar" style="width: 0%"></div>
+				</div>
 			</div>
 		</div>
 

@@ -24,6 +24,8 @@ function loginUser() {
             localStorage.setItem('token', data.jwt)
             localStorage.setItem('groups', data.groups)
             localStorage.setItem('location', data._id + '/')
+            localStorage.setItem('public_key', data.public_key)
+            localStorage.setItem('private_key', data.private_key)
             localStorage.setItem('user_data', JSON.stringify(data))
             location.href = 'index.html'
         },

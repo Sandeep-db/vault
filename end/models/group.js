@@ -5,6 +5,14 @@ const groupSchema = new Schema({
         type: String,
         required: true,
     },
+    public_key: {
+        type: String,
+        required: true,
+    },
+    private_key: {
+        type: String,
+        required: true,
+    },
     members: [{
         _id: {
             type: Schema.Types.ObjectId,
