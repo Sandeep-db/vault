@@ -40,6 +40,24 @@ app.route('/set-path')
         cache.set(email + group_id, path || '/')
         return res.status(200).json({ path: path || '/' })
     })
+app.route('/adduser')
+    .post(async (req, res) => {
+        if (!verify(req.headers)) {
+            return res.status(400).json({ message: "not authorized" })
+        }
+        const { status, result } = await groupCtrl.addMember(req.body)
+        console.log("result ---", result)
+        return res.status(status).json(result)
+    })
+
+app.route('/getgrp')
+    .post(async (req, res) => {
+        if (!verify(req.headers)) {
+            return res.status(400).json({ message: "not authorized" })
+        }
+        const { status, result } = await groupCtrl.getGroup(req.body)
+        return res.status(status).json(result)
+    })
 
 const group = app
 export default group
