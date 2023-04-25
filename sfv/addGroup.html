@@ -75,16 +75,25 @@
 			</div>
 		</nav>
 	</div>
+	<div id="email" class="modal">
+		<div class="modal-content">
+			<h4>Enter email</h4>
+			<input id="usergrp" type="text" placeholder="mail" />
+			<h4>Enter name</h4>
+			<input id="usergrpname" type="text" placeholder="name" />
+			<button onclick="adduser()" class="btn white-text" >Add User</button>
+		</div>
+	</div>
 	<ul class="side-nav fixed floating transparent z-depth-0">
-		<li class="active">
-			<a class="home-nav"><i class="material-icons blue-text text-darken-1">storage</i>My
+		<li>
+			<a class="home-nav"><i class="material-icons">storage</i>My
 				Space</a>
 		</li>
 		<li>
 			<a class="group-nav"><i class="material-icons">people</i>Groups</a>
 		</li>
-		<li>
-			<a href="addGroup.html" ><i class="material-icons">donut_large</i>Add to group</a>
+		<li class="active">
+			<a class="status-nav"><i class="material-icons blue-text text-darken-1">donut_large</i>Add to group</a>
 		</li>
 		<li>
 			<a href="profile.html" class="profile-nav"><i class="material-icons">account_circle</i>Profile</a>
@@ -111,74 +120,34 @@
 		</li>
 	</ul>
 	<div class="main">
-		<div class="container-fluid box">
-			<p class="subheader path-header">
-				<span class="dir"><i class="material-icons">keyboard_arrow_right</i><a class="path-nav">Home</a></span>
-			</p>
-			<div id="folders">
-			</div>
-		</div>
+		<div class="container-fluid" style="width: 800px !important;">
+            <div class="row">
 
-		<!-- Modal Structure folder -->
-		<div id="folder-name" class="modal">
-			<div class="modal-content">
-				<h4>Enter Folder Name</h4>
-				<input type="text" placeholder="Folder name" />
-				<button class="btn white-text" onclick="createFolder()">Create Folder</button>
-			</div>
+			<div class="container-fluid box col s6 group-bar transparent z-depth-0">
+                <h5 class="groupheader">
+                    Groups 
+                </h5>
+                <div class="divider"></div>
+                <div id="groups" class="side-nav">
+                </div>
+            </div>
+            <div class="container-fluid box col s6 group-bar transparent z-depth-0">
+                <h5 class="groupheader">
+                    Members <a href="#email" class="modal-trigger"><i class="material-icons small" style="margin-left: 60px; cursor: pointer;">add_circle_outline</i></a>
+                </h5>
+                <div class="divider"></div>
+                <div id="members" class="side-nav">
+                </div>
+            </div>
 		</div>
+    </div>
 
-		<!-- Modal Structure delete -->
-		<div id="delete-name" class="modal">
-			<div class="modal-content">
-				<button class="btn white-text" onclick="deleteFolder()">Delete</button>
-			</div>
-		</div>
-
-		<!-- Modal Structure download -->
-		<div id="download-name" class="modal">
-			<div class="modal-content">
-				<h6>Downloaded <span class="download-value">0</span>%</h6>
-				<div class="progress">
-					<div class="determinate" id="download-bar" style="width: 0%"></div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal Structure file -->
-		<div id="file-name" class="modal">
-			<div class="modal-content">
-				<form id="fileupload" method="POST" enctype="multipart/form-data">
-					<div class="file-field input-field">
-						<div class="btn">
-							<span>File</span>
-							<input id="upload-file" type="file">
-						</div>
-						<div class="file-path-wrapper">
-							<input class="file-path validate" type="text" placeholder="Upload one or more files">
-						</div>
-						<div class="progress-transfer" hidden>
-							<h6>Transfered <span class="transfer-value">0</span>%</h6>
-							<div class="progress">
-								<div class="determinate" id="tranfer-bar" style="width: 0%"></div>
-							</div>
-							<h6>Uploaded <span class="upload-value">0</span>%</h6>
-							<div class="progress">
-								<div class="determinate" id="upload-bar" style="width: 0%"></div>
-							</div>
-						</div>
-					</div>
-					<button class="btn upload-file-button" type="submit" class="btn white-text">Upload</button>
-				</form>
-			</div>
-		</div>
-
-	</div>
+		
 </body>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/sidenav.js"></script>
-<script src="js/index.js"></script>
+<script src="js/addGroup.js"></script>
 <script src="js/socket.listen.js"></script>
 
 </html>
