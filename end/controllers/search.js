@@ -4,8 +4,7 @@ export default function SearchController() {
     return {
         searchFiles: async function ({ group_id, file_name }) {
             try {
-                const regex = new RegExp(`^${file_name}*`)
-                const result = await file.find({ group_id, name: { $regex: regex } }).limit(10)
+                const result = await file.find({ group_id, name: { $regex: `^${file_name}`, $options: 'i' }}, { children: 0 }).limit(10)
                 return { result, status: 200 }
             } catch (e) {
                 return { result: e, status: 400 }

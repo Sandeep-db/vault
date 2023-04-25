@@ -26,7 +26,7 @@
 
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
     <title>Secure Vault</title>
 </head>
@@ -44,7 +44,10 @@
                 </ul>
                 <div class="search-wrapper">
                     <i class="material-icons">search</i>
-                    <input type="search" name="Search" placeholder="Search Vault" />
+                    <input type="search" name="Search" id="search" onkeyup="search(value)" onabort="search(value)"
+						placeholder="Search Vault" />
+					<div id="search-results">
+                    </div>
                 </div>
                 <ul class="right">
                     <li>
@@ -59,7 +62,7 @@
                         <a class="waves-effect waves-light btn btn-flat white-text new-file-folder modal-trigger"
                             href="#folder-name">Add Folder</a>
                         <a class="waves-effect waves-light btn btn-flat white-text new-file-folder modal-trigger"
-                            href="#file-name">Upload Files</a>
+                            href="#file-name" id="search-obj">Upload Files</a>
                     </li>
                 </ul>
                 <ul class="right">
@@ -113,16 +116,18 @@
     </ul>
     <div class="main">
         <div class="row">
-            <div class="container-fluid box" >
+            <div class="container-fluid box">
                 <p class="subheader path-header">
-                    <span class="dir"><i class="material-icons">keyboard_arrow_right</i><a id="-group-name">Group Home</a></span>
+                    <span class="dir"><i class="material-icons">keyboard_arrow_right</i><a id="-group-name">Group
+                            Home</a></span>
                 </p>
                 <div id="folders" class="col s10">
                 </div>
             </div>
             <div class="container-fluid box col s3 group-bar transparent z-depth-0">
                 <h5 class="groupheader">
-                    Groups <a href="#group-name" class="modal-trigger"><i class="material-icons small" style="margin-left: 60px; cursor: pointer;">add_circle_outline</i></a>
+                    Groups <a href="#group-name" class="modal-trigger"><i class="material-icons small"
+                            style="margin-left: 60px; cursor: pointer;">add_circle_outline</i></a>
                 </h5>
                 <div class="divider"></div>
                 <div id="groups" class="side-nav">
@@ -140,21 +145,21 @@
         </div>
 
         <!-- Modal Structure delete -->
-		<div id="delete-name" class="modal">
-			<div class="modal-content">
-				<button class="btn white-text" onclick="deleteFolder()">Delete</button>
-			</div>
-		</div>
+        <div id="delete-name" class="modal">
+            <div class="modal-content">
+                <button class="btn white-text" onclick="deleteFolder()">Delete</button>
+            </div>
+        </div>
 
         <!-- Modal Structure download -->
-		<div id="download-name" class="modal">
-			<div class="modal-content">
-				<h6>Downloaded <span class="download-value">0</span>%</h6>
-				<div class="progress">
-					<div class="determinate" id="download-bar" style="width: 0%"></div>
-				</div>
-			</div>
-		</div>
+        <div id="download-name" class="modal">
+            <div class="modal-content">
+                <h6>Downloaded <span class="download-value">0</span>%</h6>
+                <div class="progress">
+                    <div class="determinate" id="download-bar" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Modal Structure folder -->
         <div id="folder-name" class="modal">
@@ -179,13 +184,13 @@
                         </div>
                         <div class="progress-transfer" hidden>
                             <h6>Transfered <span class="transfer-value">0</span>%</h6>
-							<div class="progress">
-								<div class="determinate" id="tranfer-bar" style="width: 0%"></div>
-							</div>
-							<h6>Uploaded <span class="upload-value">0</span>%</h6>
-							<div class="progress">
-								<div class="determinate" id="upload-bar" style="width: 0%"></div>
-							</div>
+                            <div class="progress">
+                                <div class="determinate" id="tranfer-bar" style="width: 0%"></div>
+                            </div>
+                            <h6>Uploaded <span class="upload-value">0</span>%</h6>
+                            <div class="progress">
+                                <div class="determinate" id="upload-bar" style="width: 0%"></div>
+                            </div>
                         </div>
                     </div>
                     <button class="btn upload-file-button" type="submit" class="btn white-text">Upload</button>
@@ -199,6 +204,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/sidenav.js"></script>
 <script src="js/group.js"></script>
+<script src="js/search.js"></script>
 <script src="js/socket.listen.js"></script>
 
 </html>

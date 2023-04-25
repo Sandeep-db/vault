@@ -43,7 +43,10 @@
 				</ul>
 				<div class="search-wrapper">
 					<i class="material-icons">search</i>
-					<input type="search" name="Search" placeholder="Search Vault" />
+					<input type="search" name="Search" id="search" onkeyup="search(value)" onabort="search(value)"
+						placeholder="Search Vault" />
+					<div id="search-results">
+					</div>
 				</div>
 				<ul class="right">
 					<li>
@@ -58,7 +61,7 @@
 						<a class="waves-effect waves-light btn btn-flat white-text new-file-folder modal-trigger"
 							href="#folder-name">Add Folder</a>
 						<a class="waves-effect waves-light btn btn-flat white-text new-file-folder modal-trigger"
-							href="#file-name">Upload Files</a>
+							href="#file-name" id="search-obj">Upload Files</a>
 					</li>
 				</ul>
 				<ul class="right">
@@ -179,6 +182,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="js/sidenav.js"></script>
 <script src="js/index.js"></script>
+<script src="js/search.js"></script>
 <script src="js/socket.listen.js"></script>
 
 </html>

@@ -184,7 +184,11 @@ function displayFolders() {
 }
 
 function updatePath(index, flag) {
+    console.log(index)
     dirs.length = index
+    if (typeof index === 'string') {
+        dirs = index.split('/')
+    }
     path = '/'
     $('.path-header').empty()
     $('.path-header').append('<span class="dir"><i class="material-icons">keyboard_arrow_right</i><a class="path-nav" onclick="updatePath(0, true)">Home</a></span>')

@@ -1,6 +1,5 @@
 import user from "../models/user.js"
 import file from "../models/file.js"
-import NodeRSA from "node-rsa"
 
 export default function UserController() {
     return {
@@ -14,9 +13,6 @@ export default function UserController() {
         },
         createUser: async function ({ email, name, passwd, public_key, private_key }) {
             try {
-                // const key = new NodeRSA({ b: 2048 })
-                // const public_key = key.exportKey('pkcs1-public-pem')
-                // const private_key = key.exportKey('pkcs1-private-pem')
                 const new_user = new user({ email, name, passwd ,public_key, private_key })
                 const result = await new_user.save()
                 const root_dir = new file({
@@ -89,7 +85,6 @@ export default function UserController() {
                 return { result: e, status: 400 }
             }
         },
-
         delete: async function ({ _id }) {
             try {
                 const doc = await file.findOne({ _id });
