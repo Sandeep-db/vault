@@ -1,43 +1,4 @@
 
-const importPrivateKey = async (pem) => {
-    const front = 28, back = 26, len = pem.length
-    pem = pem.slice(front, len - back)
-    const binaryDer = window.atob(pem)
-    const binaryDerBuffer = new Uint8Array(binaryDer.length)
-    for (let i = 0; i < binaryDer.length; i++) {
-        binaryDerBuffer[i] = binaryDer.charCodeAt(i)
-    }
-    return await window.crypto.subtle.importKey(
-        'pkcs8',
-        binaryDerBuffer,
-        {
-            name: 'RSA-OAEP',
-            hash: 'SHA-256'
-        },
-        true,
-        ['decrypt']
-    )
-}
-
-const importPublicKey = async (pem) => {
-    const front = 27, back = 25, len = pem.length
-    pem = pem.slice(front, len - back)
-    const binaryDer = window.atob(pem)
-    const binaryDerBuffer = new Uint8Array(binaryDer.length)
-    for (let i = 0; i < binaryDer.length; i++) {
-        binaryDerBuffer[i] = binaryDer.charCodeAt(i)
-    }
-    return await window.crypto.subtle.importKey(
-        'spki',
-        binaryDerBuffer,
-        {
-            name: 'RSA-OAEP',
-            hash: 'SHA-256'
-        },
-        true,
-        ['encrypt']
-    )
-}
 
 let path = '/'
 let dirs = []
@@ -51,6 +12,7 @@ function setpath(path) {
         email: localStorage.getItem("email"),
         group_id: localStorage.getItem("group_id"),
         path: path
+        
     }
     $.ajax({
         type: 'POST',
@@ -184,6 +146,7 @@ function displayFolders() {
         `)
     }
 }
+
 
 function updatePath(index, flag) {
     dirs.length = index
